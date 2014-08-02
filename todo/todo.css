@@ -1,0 +1,14 @@
+.deleteitem {
+  display:none;
+}
+.item:hover .deleteitem {
+  display:block;
+}
+.item:hover {
+  background-color:gray;
+  color:white;  
+}
+
+h1 {
+    color:gray;
+}
