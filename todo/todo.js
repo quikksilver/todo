@@ -37,10 +37,12 @@ function addListItem(key, value) {
   var li = document.createElement('li');
   // li.draggable = true;
   li.id = key
-  li.setAttribute("contentEditable", true);;
+  li.setAttribute("contentEditable", true);
+  li.setAttribute("class", "item");
   li.innerHTML = value;
   // Delete button
   var but = document.createElement('button');
+  but.setAttribute("class", "deleteitem");
   but.appendChild(document.createTextNode('Delete'));
   but.setAttribute('onclick', "removeItem('" + key + "')");
   li.appendChild(but);
