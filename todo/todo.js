@@ -52,10 +52,40 @@ function addListItem(key, value) {
 
 /*Load the locally stored value to the DOM*/
 function init() {
+  // Read from local storage and display it in the DOM
   var todo_index = window.localStorage.length;
   for (var i = 0; i < todo_index; i++) {
     key = window.localStorage.key(i);
     addListItem(key, window.localStorage.getItem(key));
   }
+  document.addEventListener('keydown', keyEvent, true);
 }
+
+/* Save the node edited text if stroke new line*/
+function keyEvent(event) {
+  var esc = event.which == 27;
+  var newline = event.which == 13;
+  var el = event.target;
+  var input = el.nodeName == 'LI';
+  if (input) {
+    if (esc) {
+      // restore state
+      document.execCommand('undo');
+      el.blur();
+    } else if (newline) {
+      // save
+      var id = el.getAttribute('id');
+      // Remove the child text...
+      addStorageItem(id, el.textContent.substr(0, el.textContent.length - 'Delete'.length));
+      el.blur();
+      event.preventDefault();
+    }
+  }
+}
+
+
+
+
+
+
 
